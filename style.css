@@ -15,29 +15,44 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 1rem;
 }
 
 #game {
-    width: 25%;
-    height: 50%;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+    gap: 1rem;
     margin-bottom: 1.5rem;
     margin-top: 2rem;
 }
 
+#board {
+    width: min(90vw, 400px);
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    place-items: center;
+}
+
 .box {
     background-color: #83cce4;
-    height: 15vh;
-    width: 15vh;
+    height: min(15vh, 100px);
+    width: min(15vh, 100px);
     border-radius: 1rem;
     border: none;
     font-size: 2rem;
     font-weight: bold;
     color: blueviolet;
+}
+
+.x {
+    color: red !important;
+}
+
+.o {
+    color: blue !important;
 }
 
 #reset {
@@ -76,4 +91,22 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    .box {
+        font-size: 1.5rem;
+        height: min(12vh, 80px);
+        width: min(12vh, 80px);
+    }
+    #reset, #new {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+    #board {
+        width: min(95vw, 350px);
+    }
 }

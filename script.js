@@ -21,9 +21,11 @@ boxes.forEach((box) => {
     box.addEventListener("click", () => {
         if (turnX) {
             box.innerText = "X";
+            box.classList.add("x");
             turnX = false;
         } else {
             box.innerText = "O";
+            box.classList.add("o");
             turnX = true;
         }
         
@@ -41,6 +43,7 @@ function enableBoxes() {
     for (let box of boxes) {
         box.disabled = false;
         box.innerText = "";
+        box.classList.remove("x", "o");
         winner.innerText = "";
     }
 }
@@ -51,16 +54,31 @@ const Patterns = () => {
         let turn2 = boxes[pattern[1]].innerText;
         let turn3 = boxes[pattern[2]].innerText;
         
-        if (turn1 != "" && turn1 != "" && turn1 != "") {
+        if (turn1 != "" && turn2 != "" && turn3 != "") {
             if (turn1 === turn2 && turn2 === turn3) {
                 winner.innerText = `Congratulations ${turn1} you are Winner`;
                 disableBoxes();
                 Game.classList.add("hide");
                 newGame.classList.add("block");
-      }
+                return; // Exit if there's a winner
+            }
+        }
     }
-    boxes.disabled = true;
-  }
+    
+    // Check for tie
+    let allFilled = true;
+    for (let box of boxes) {
+        if (box.innerText === "") {
+            allFilled = false;
+            break;
+        }
+    }
+    if (allFilled) {
+        winner.innerText = "It's a Tie!";
+        disableBoxes();
+        Game.classList.add("hide");
+        newGame.classList.add("block");
+    }
 };
 
 resetBtn.addEventListener("click", () => {
