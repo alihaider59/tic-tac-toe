@@ -1,3 +1,4 @@
+// script.js
 let Game = document.querySelector("#game");
 let boxes = document.querySelectorAll(".box");
 let resetBtn = document.querySelector("#reset");
